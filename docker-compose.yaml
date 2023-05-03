@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+    automatic:
+      build:
+        context: ./automatic
+      ports:
+        - "7861:7861"
+      deploy:
+        resources:
+          reservations:
+            devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    entry:
+      build:
+        context: ./entry
+      ports:
+        - "7860:7860"
